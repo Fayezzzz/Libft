@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhairul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 09:05:06 by mkhairul          #+#    #+#             */
-/*   Updated: 2022/05/24 09:05:06 by mkhairul         ###   ########.fr       */
+/*   Created: 2022/05/24 20:55:07 by mkhairul          #+#    #+#             */
+/*   Updated: 2022/05/24 20:55:07 by mkhairul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int	signs;
-	int	i;
-	int	temp_num;
+	size_t	i;
+	size_t	j;
+	size_t	dest_length;
+	size_t	src_length;
 
-	signs = 1;
+	src_length = ft_strlen(src);
+	dest_length = ft_strlen(dest);
+	j = dest_length;
 	i = 0;
-	temp_num = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == 45 || (str[i] == 43))
+	if (dest_length < size - 1 && size > 0)
 	{
-		if (str[i] == 45)
-			signs *= -1;
-		i++;
+		while (src[i] && dest_length + i < size - 1)
+		{
+			dest[j] = src[i];
+			j++;
+			i++;
+		}
+		dest[j] = 0;
 	}
-	if (str[i] == 45 || (str[i] == 43))
-		return (0);
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		temp_num = str[i] + (temp_num * 10) - '0';
-		i++;
-	}
-	return (temp_num * signs);
+	if (dest_length >= size)
+		dest_length = size;
+	return (dest_length + src_length);
 }
