@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkhairul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 19:03:14 by mkhairul          #+#    #+#             */
-/*   Updated: 2022/05/24 19:03:14 by mkhairul         ###   ########.fr       */
+/*   Created: 2022/06/01 12:51:05 by mkhairul          #+#    #+#             */
+/*   Updated: 2022/06/01 12:51:05 by mkhairul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putendl_fd(char *s, int fd)
 {
-	unsigned int	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]) && (i < n))
-	{
-		if (s2[i] > s1[i])
-		{
-			return (-1);
-		}
-		if (s1[i] > s2[i])
-		{
-			return (1);
-		}
-		i++;
-	}
-	return (0);
+	while (*s)
+		write(fd, s++, 1);
+	write(fd, "\n", 2);
 }

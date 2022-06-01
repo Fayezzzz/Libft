@@ -20,3 +20,4 @@ int	ft_isalnum(int c)
 		return (1);
 	else
 		return (0);
+}
