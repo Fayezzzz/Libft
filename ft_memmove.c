@@ -19,15 +19,17 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 
 	str1 = (char *)dest;
 	str2 = (char *)src;
+	if (!str1 && !str2)
+		return (0);
 	if (dest == src)
 		return (dest);
-	if (str1 < str2)
+	if (str1 > str2)
 	{
-		while (len--)
+		while (len-- > 0)
 			str1[len] = str2[len];
 		return (dest);
 	}
-	while (len--)
+	while (len-- > 0)
 		*str1++ = *str2++;
 	return (dest);
 }
