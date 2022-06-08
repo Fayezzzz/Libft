@@ -15,11 +15,22 @@
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;
-	size_t	front;
-	size_t	back;
+	size_t	len;
 
-	
-
-
-	str = (char *)malloc((sizeof(char) * ( rear - front + 1));
-
+	if (!s1 || !set)
+		return (NULL);
+	len = ft_strlen(s1);
+	while (*s1 && ft_strchr(set, *s1) != NULL)
+	{
+		++s1;
+		--len;
+	}
+	while (len > 0 && ft_strrchr(set, s1[len - 1]) != NULL)
+		--len;
+	str = malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s1, len + 1);
+	str[len] = '\0';
+	return (str);
+}

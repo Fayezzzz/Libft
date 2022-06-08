@@ -16,6 +16,8 @@ void	*ft_calloc(size_t n, size_t size)
 {
 	void	*pointer;
 
+	if ((n > 65535 || size > 65535) && ((size_t)-1 / n) < size)
+		return (NULL);
 	pointer = (void *)malloc(n * size);
 	if (!pointer)
 		return (NULL);

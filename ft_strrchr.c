@@ -17,6 +17,8 @@ char	*ft_strrchr(const char *src, int c)
 	int	i;
 
 	i = ft_strlen(src);
+	if (c >= 256)
+		c -= 256;
 	while (i >= 0)
 	{
 		if (src[i] == c)
