@@ -31,6 +31,12 @@ FILES	= 	ft_isalpha.c    ft_isdigit.c   ft_isalnum.c    ft_isascii.c   \
 		
 FILO	= $(FILES:.c=.o)
 
+BONUS	= 	ft_lstnew.c 	 ft_lstadd_front.c ft_lstsize.c  ft_lstlast.c  \
+			ft_lstadd_back.c ft_lstdelone.c	   ft_lstclear.c ft_lstiter.c  \
+			ft_lstmap.c
+
+BONER = $(BONUS:.c=.o)
+
 INCLUDES = ./libft.h
 
 all: $(NAME) 
@@ -46,4 +52,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+$(NAME): bonus
+
+bonus: $(BONER)
+	$(AR) $(NAME) $(BONER)
+
+.PHONY: all clean fclean re bonus

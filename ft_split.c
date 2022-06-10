@@ -32,7 +32,7 @@ static int	ft_count(char const *s, char c)
 			word = 0;
 		i++;
 	}
-	return (i);
+	return (count);
 }
 
 static int	ft_charcount(char const *s, char c)
@@ -40,7 +40,7 @@ static int	ft_charcount(char const *s, char c)
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0' && s[i] != c)
+	while (s[i + 1] != 0 && s[i + 1] != c)
 		i++;
 	return (i);
 }
@@ -53,23 +53,22 @@ char	**ft_split(char const *s, char c)
 	int		k;
 
 	i = 0;
-	j = 0;
 	k = 0;
 	if (!s)
-		return (NULL);
-	str = ft_calloc(ft_count(s, c) + 1, sizeof(char *));
+		return (0);
+	str = ft_calloc((ft_count(s, c) + 1), sizeof(char *));
 	if (!str)
-		return (NULL);
+		return (0);
 	while (s[i] != '\0')
 	{
 		if (s[i] != c)
 		{
+			j = 0;
 			j = ft_charcount(&s[i], c);
-			str[k++] = ft_substr(s, i, j);
+			str[k++] = ft_substr(s, i, j + 1);
 			i += j;
 		}
-		else
-			i++;
+		i++;
 	}
 	return (str);
 }
